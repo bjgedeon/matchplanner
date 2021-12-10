@@ -58,6 +58,16 @@
     color: white;
 }
 
+.bestaetigungsbox {
+    display: flex;
+    border: rgb(95, 189, 95) solid 2px;
+    font-family: 'Outfit', sans-serif;
+    background: rgb(95, 189, 95);
+    color: white;
+    padding: 20px;
+    justify-content: center;
+}
+
 a:link {
     font-family: 'Outfit', sans-serif;
     text-decoration: none;
@@ -80,4 +90,8 @@ a:visited {
 
 a:active {
     background: lightgrey;
+}
+
+ul {
+    list-style-type: none;
 }

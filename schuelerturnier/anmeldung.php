@@ -41,49 +41,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Geben Sie bitte den Namen der Lehrperson ein.';
     }
     if (!empty($_POST['post-trainer'])) {
-        $postTeamname = $_POST['post-trainer'];
+        $postTrainer = $_POST['post-trainer'];
     } else {
         $errors[] = 'Geben Sie bitte den Namen des Trainers/ der Trainerin ein.';
     }
     if (!empty($_POST['post-numberteacher'])) {
-        $postNumber = $_POST['post-numberteacher'];
+        $postNumberteacher = $_POST['post-numberteacher'];
         if (!preg_match('/^[\+ 0-9]+$/', $postNumberteacher)) {
-            $errors[] = 'Geben Sie bitte eine gültige Telefonnummer ein.';
+            $errors[] = 'Geben Sie bitte eine gültige Telefonnummer, bei der Lehrperson, ein.';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte Ihre Telefonnummer ein.';
+        $errors[] = 'Geben Sie bitte eine Telefonnummer, bei der Lehrperson, ein.';
     }
     if (!empty($_POST['post-numbertrainer'])) {
-        $postNumber = $_POST['post-numbertrainer'];
+        $postNumbertrainer = $_POST['post-numbertrainer'];
         if (!preg_match('/^[\+ 0-9]+$/', $postNumbertrainer)) {
-            $errors[] = 'Geben Sie bitte eine gültige Telefonnummer, bei dem Trainer/ der Trainerin ein.';
+            $errors[] = 'Geben Sie bitte eine gültige Telefonnummer, bei dem Trainer/ der Trainerin, ein.';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine gültige Telefonnummer, bei der Lehrperson ein.';
+        $errors[] = 'Geben Sie bitte eine Telefonnummer, bei dem Trainer/ der Trainerin, ein.';
     }
-    if (!empty($_POST['post-email'])) {
+    if (!empty($_POST['post-emailteacher'])) {
         $postEmailteacher = $_POST['post-emailteacher'];
         if (strpos($postEmailteacher, '@') === false) {
-            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse ein.';
+            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse, bei der Lehrperson, ein.';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine E-mail-Adresse ein.';
+        $errors[] = 'Geben Sie bitte eine E-mail-Adresse, bei der Lehrperson, ein.';
     }
     if (!empty($_POST['post-emailtrainer'])) {
-        $postEmail = $_POST['post-emailtrainer'];
+        $postEmailtrainer = $_POST['post-emailtrainer'];
         if (strpos($postEmailtrainer, '@') === false) {
-            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse ein.';
+            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse, bei dem Trainer/ der Trainerin, ein.';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine E-mail-Adresse ein.';
+        $errors[] = 'Geben Sie bitte eine E-mail-Adresse, bei dem Trainer/ der Trainerin, ein.';
     }
     if (empty($errors)) {
-        $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_class, post_students, post_classname, post_teamname, post_numbertrainer, post_numberteacher, post_emailteacher,  post_emailtrainer) VALUES (:postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postEmailteacher, :postEmailtrainer)");
-        $stmt -> execute([':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, 'postTeamname' => $postTeamname, ':postNumbertrainer' => $postNumbertrainer, ':postNumberteacher' => $postNumberteacher, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer]);
+        $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_class, post_students, post_classname, post_teamname, post_numberteacher, post_numbertrainer, post_emailteacher,  post_emailtrainer, post_teacher, post_trainer) VALUES (:postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postNumbertrainer, :postEmailteacher, :postEmailtrainer, :postTeacher, :postTrainer)");
+        $stmt -> execute([':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, 'postTeamname' => $postTeamname, ':postNumberteacher' => $postNumberteacher, ':postNumbertrainer' => $postNumbertrainer, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer, ':postTeacher' => $postTeacher, ':postTrainer' => $postTrainer]);
     }
 }
 ?>
@@ -119,6 +119,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </ul>  
             </div>
             <?php } ?>
+            <div>
+   <?php
+if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
+    <div class="bestaetigungsbox"> <ul>
+    <li>Vielen Dank für Ihre Anmeldung am Schülerturnier Ebikon. Wir werden uns bei Ihnen melden wenn alles organisiert ist.</li>
+    <div>
+    <?php } ?>
+</ul>
+   </div>
        <div class="main">
        <form method="post" action="anmeldung.php">
 <h2>Melden Sie ihre Klasse für das Schülerturnier Ebikon an.</h2>
@@ -135,6 +144,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <label for="5,6Klasse">5, 6 Klasse</label>
   <p>Anzahl teilnehmender Schüler:</p>
   <input class="textarea" type = "text" value="<?php if (isset ($postStudents)) { echo $postStudents;} ?>" name="post-students" placeholder="Wert in Zahl angeben">
+  <p>Name der Lehrperson:</p>
+  <input class="textarea" type = "text" value="<?php if (isset ($postTeacher)) { echo $postTeacher;} ?>" name="post-teacher" placeholder="Vorname Nachname">
+  <p>Name des Trainers/ der Trainerin:</p>
+  <input class="textarea" type = "text" value="<?php if (isset ($postTrainer)) { echo $postTrainer;} ?>" name="post-trainer" placeholder="Vorname Nachname">
   <p>Telefonnummer der Lehrperson:</p>
   <input class="textarea" type = "text" value="<?php if (isset ($postNumberteacher)) { echo $postNumberteacher;} ?>" name="post-numberteacher">
   <p>Telefonnummer des Trainners/ der Trainerin:</p>
@@ -143,8 +156,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <input class="textarea" type = "text" value="<?php if (isset ($postEmailteacher)) { echo $postEmailteacher;} ?>" name="post-emailteacher">
   <p>Email-Adresse des Trainers/ der Trainerin:</p>
   <input class="textarea" type = "text" value="<?php if (isset ($postEmailtrainer)) { echo $postEmailtrainer;} ?>" name="post-emailtrainer">
-  <input class = "bottom" type = "submit">
-</form>  
+  <input class = "bottom" type = "submit" name="bottom">
+</form> 
        </div>
    </main>
 </body>

@@ -40,8 +40,12 @@ $sign_ups = $stmt->fetchALL();
     <th>Klassenname</th>
     <th>Teamname</th>
     <th>Anzahl teilnehmender Spieler</th>
-    <th>Telefonnummer</th>
-    <th>Email-Adresse</th>
+    <th>Name der Lehrperson</th>
+    <th>Name des Trainers/ der Trainerin</th>
+    <th>Telefonnummer der Lehrperson</th>
+    <th>Telefonnummer des Trainers/ der Trainerin</th>
+    <th>Email-Adresse der Lehrperson</th>
+    <th>Email-Adresse des Trainers/ der Trainerin</th>
 </tr>
     <main>
     <?php
@@ -51,8 +55,12 @@ foreach($sign_ups as $sign_up)  { ?>
     <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
     <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
     <th><?= htmlspecialchars($sign_up['post_students'])?></th>
-    <th><?= htmlspecialchars($sign_up['post_number'])?></th>
-    <th><?= htmlspecialchars($sign_up['post_email'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_teacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_trainer'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_numberteacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_numbertrainer'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_emailteacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_emailtrainer'])?></th>
 </tr>
 </div>
 <?php
