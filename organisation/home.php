@@ -16,6 +16,7 @@
  <div class="div">
         <a href="home.php">Home</a>
         <a href="information.php">Information</a>
+        <a href="anmeldungen.php">Anmeldungen</a>
     </div>
 </header>   
 </body>

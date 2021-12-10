@@ -47,11 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  <div class="div">
         <a href="home.php">Home</a>
         <a href="information.php">Information</a>
+        <a href="anmeldungen.php">Anmeldungen</a>
     </div>
 </header>   
  <main>
  <?php if (count($errors) > 0) { ?>
-            <div class = "error"> <ul>
+            <div class="errorbox"> <ul>
                     <?php foreach ($errors as $error) { ?>
                     <li> <?= $error ?> </li> <br>
                     <?php } ?>        
@@ -60,11 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php } ?>
             <div class="main">
 <form method="post" action="information.php">
+
     <h2>Information eingeben</h2>
      <p>Titel:</p> 
-     <input class="textarea" type = "text" name = "post-title"> 
+     <input class="textarea" type = "text" value="<?php if (isset ($postTitle)) { echo $postTitle;} ?>" name = "post-title"> 
      <p>Text:</p>
-    <textarea class="textarea" name = "post-text" rows = "5" cols = "40" placeholder="Text"></textarea> 
+    <textarea class="textarea" value="<?php if (isset ($postText)) { echo $postText;} ?>" name = "post-text" rows = "5" cols = "40" placeholder="Text"></textarea> 
     <input class = "bottom" type = "submit">
                     </div>
 </form>

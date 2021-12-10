@@ -23,13 +23,13 @@
      margin-left: auto;
      margin-right: auto;
      width: 415px;
-     
      padding-left: 30px;
      padding-right: 30px;
  }
 
  .textarea {
     display: block;
+    font-family: 'Outfit', sans-serif;
     margin-bottom: 20px;
     max-width: 408px;
     min-width: 408px;
@@ -44,6 +44,15 @@
     margin-right: auto;
     margin-bottom: 40px;
 }
+
+.errorbox {
+    border: rgb(165, 24, 24) solid 2px;
+    background: rgb(190, 81, 81);
+    font-family: 'Outfit', sans-serif;
+    color: white;
+}
+
+
 
  a:link {
     font-family: 'Outfit', sans-serif;
@@ -65,4 +74,32 @@ a:visited {
 
 a:active {
     background: lightgrey;
+}
+
+table {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+.th {
+    height: 70px;
+    background: rgb(165, 24, 24);
+    color: white;
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background: black;
+    color: white;
+}
+
+table, th, td {
+    border-bottom: black solid 2px;
+    border-collapse: collapse;
+    font-family: 'Outfit', sans-serif;
+    text-align: left;
+    height: 30px;
+    padding-left: 20px;
 }
