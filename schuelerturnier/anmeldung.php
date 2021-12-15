@@ -66,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['post-emailteacher'])) {
         $postEmailteacher = $_POST['post-emailteacher'];
         if (strpos($postEmailteacher, '@') === false) {
-            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse, bei der Lehrperson, ein.';
+            $errors[] = 'Geben Sie bitte eine gültige Email-Adresse, bei der Lehrperson, ein.';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine E-mail-Adresse, bei der Lehrperson, ein.';
+        $errors[] = 'Geben Sie bitte eine Email-Adresse, bei der Lehrperson, ein.';
     }
     if (!empty($_POST['post-emailtrainer'])) {
         $postEmailtrainer = $_POST['post-emailtrainer'];
@@ -84,23 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_class, post_students, post_classname, post_teamname, post_numberteacher, post_numbertrainer, post_emailteacher,  post_emailtrainer, post_teacher, post_trainer) VALUES (:postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postNumbertrainer, :postEmailteacher, :postEmailtrainer, :postTeacher, :postTrainer)");
         $stmt -> execute([':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, 'postTeamname' => $postTeamname, ':postNumberteacher' => $postNumberteacher, ':postNumbertrainer' => $postNumbertrainer, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer, ':postTeacher' => $postTeacher, ':postTrainer' => $postTrainer]);
-    }
-}
-$errors2 = array();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['post-username'])) {
-        $postUsername = $_POST['post-username'];
-    } else {
-        $errors[] = 'Geben Sie bitte einen Benutzernamen ein.';
-    }
-    if (!empty($_POST['post-password'])) {
-        $postPassword = $_POST['post-password'];
-    } else {
-        $errors[] = 'Geben Sie bitte ein Passwort ein.';
-    }
-    if (empty($errors)) {
-        $stmt = $pdo->prepare("INSERT INTO `log_in` (post_username, post_password) VALUES (:postUsername, :postPassword)");
-        $stmt -> execute([':postUsername' => $postUsername, ':postPassword' => $postPassword]);
     }
 }
 ?>
@@ -121,45 +104,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header class="header">
         <h1 class="title">Anmeldung</h1>
         <div class="div">
-        <a href="home.php">Home</a>
-        <a href="anmeldung.php">Anmeldung</a>
-        <a href="spielplan.php">Spielplan</a>
-        <a href="rangliste.php">Rangliste</a>
-    </div>
+        <a class="link" href="home.php">Home</a>
+        <a class="link" href="anmeldung.php">Anmeldung</a>
+        <a class="link" href="spielplan.php">Spielplan</a>
+        <a class="link" href="rangliste.php">Rangliste</a>
     </header>
-
    <main>
-   <?php if (count($errors) > 0) { ?>
+   <?php 
+   if (count($errors) > 0) { ?>
             <div class = "errorbox"> <ul>
                     <?php foreach ($errors as $error) { ?>
                     <li> <?= $error ?> </li> <br>
-                    <?php } ?>        
+                    <?php } ?> 
                     </ul>  
             </div>
             <?php } ?>
-            <div>
-            <?php if (count($errors2) > 0) { ?>
-            <div class = "errorbox"> <ul>
-                    <?php foreach ($errors2 as $error2) { ?>
-                    <li> <?= $error2 ?> </li> <br>
-                    <?php } ?>        
-                    </ul>  
-            </div>
-            <?php } ?>        
-       <form>
-       <?php
-       if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
- 
-    <?php } 
-    else {?>
-          <p>Benutzername:</p>
-       <input class="textarea" type = "text" value="<?php if (isset ($postUsername)) { echo $postUsername;} ?>" name="post-username">    
-       <p>Passwort:</p>
-       <input class="textarea" type = "password" value="<?php if (isset ($postPassword)) { echo $postPassword;} ?>" name="post-password">    
-       <input class = "bottom" type = "submit" name="bottom"> 
-    <?php } ?> 
-    </form>
-   </div> 
             <div>
    <?php
 if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>

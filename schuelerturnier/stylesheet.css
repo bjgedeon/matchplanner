@@ -51,6 +51,21 @@
     padding-right: 30px;
 }
 
+.link2 { 
+    font-family: 'Outfit', sans-serif;
+    text-decoration: none;
+    background-color: black;
+    border-radius: 25px;
+    color: white;
+    width: 100px;
+    padding: 10px;
+    margin-right: 42px;
+    margin-left: 42px;
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
 .errorbox {
     border: rgb(165, 24, 24) solid 2px;
     background: rgb(190, 81, 81);
@@ -68,7 +83,7 @@
     justify-content: center;
 }
 
-a:link {
+.link {
     font-family: 'Outfit', sans-serif;
     text-decoration: none;
     background-color: black;
@@ -77,8 +92,6 @@ a:link {
     text-align: center;
     display: inline-block;
 }
-
-
 
 a:hover {
     background: rgb(95, 189, 95);

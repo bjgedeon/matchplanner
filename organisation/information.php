@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="home.php">Home</a>
         <a href="information.php">Information</a>
         <a href="anmeldungen.php">Anmeldungen</a>
+        <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
     </div>
 </header>   
  <main>

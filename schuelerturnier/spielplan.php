@@ -14,10 +14,10 @@
     <header class="header">
         <h1 class="title">Spielplan</h1>
         <div class="div">
-        <a href="home.php">Home</a>
-        <a href="anmeldung.php">Anmeldung</a>
-        <a href="spielplan.php">Spielplan</a>
-        <a href="rangliste.php">Rangliste</a>
+        <a class="link" href="home.php">Home</a>
+        <a class="link" href="register.php">Anmeldung</a>
+        <a class="link" href="spielplan.php">Spielplan</a>
+        <a class="link" href="rangliste.php">Rangliste</a>
     </div>
     </header>
    
