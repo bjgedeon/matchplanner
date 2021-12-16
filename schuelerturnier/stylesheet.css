@@ -83,6 +83,11 @@
     justify-content: center;
 }
 
+.sign_up {
+    font-family: 'Outfit', sans-serif;
+    margin-top: 35px;
+}
+
 .link {
     font-family: 'Outfit', sans-serif;
     text-decoration: none;
@@ -148,8 +153,39 @@ ul {
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  
+  .dropdown-content a:active {
+    background: lightgray;
+  }
+
   .dropbtn:hover {
     background: rgb(95, 189, 95);
   }
  
+  table, th, td {
+    border-bottom: black solid 2px;
+    border-collapse: collapse;
+    font-family: 'Outfit', sans-serif;
+    text-align: left;
+    height: 30px;
+    padding-left: 20px;
+}
+
+table {
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+.th {
+    height: 70px;
+    background: rgb(95, 189, 95);
+    color: white;
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background: darkgray;
+    color: black;
+}
+

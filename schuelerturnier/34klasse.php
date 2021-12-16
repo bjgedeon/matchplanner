@@ -1,3 +1,17 @@
+<?php
+$user = 'root';
+$password = '';
+$database = 'matchplanner';
+
+$pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
+
+$stmt = $pdo->query('SELECT * FROM `sign_up`');
+$sign_ups = $stmt->fetchALL(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +26,7 @@
 </head>
 <body>
        <header class="header">
-        <h1 class="title">Spielplan</h1>
+        <h1 class="title">Spielplan 3, 4 Klasse</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
@@ -27,5 +41,22 @@
         <a class="link" href="rangliste.php">Rangliste</a>
     </div>
     </header>
+    <table>
+    <tr class="th">
+    <th>Klassenname</th>
+    <th>Teamname</th>
+</tr>
+    <div>
+    <?php
+foreach($sign_ups as $sign_up)  { ?>
+<?php
+if ($sign_up['post_class'] == '3,4Klasse') {?>
+<tr>
+    <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
+    <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
+</tr>
+<?php } ?>
+<?php
+} ?>
 </body>
 </html>

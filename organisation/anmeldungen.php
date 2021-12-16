@@ -32,12 +32,15 @@ $sign_ups = $stmt->fetchALL();
         <a href="home.php">Home</a>
         <a href="information.php">Information</a>
         <a href="anmeldungen.php">Anmeldungen</a>
+        <a href="anmeldung.php">Anmeldung</a>
         <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
     </div>
 </header>   
 <table>
+    <div class="sign_up">
+<h2>1, 2 Klasse</h2>
+    </div>
     <tr class="th">
-    <th>Kategorie</th>
     <th>Klassenname</th>
     <th>Teamname</th>
     <th>Anzahl teilnehmender Spieler</th>
@@ -51,8 +54,10 @@ $sign_ups = $stmt->fetchALL();
     <main>
     <?php
 foreach($sign_ups as $sign_up)  { ?>
+<?php
+if ($sign_up['post_class'] == '1,2Klasse') {?>
+
 <tr>
-    <th><?= htmlspecialchars($sign_up['post_class'])?></th>
     <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
     <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
     <th><?= htmlspecialchars($sign_up['post_students'])?></th>
@@ -63,9 +68,79 @@ foreach($sign_ups as $sign_up)  { ?>
     <th><?= htmlspecialchars($sign_up['post_emailteacher'])?></th>
     <th><?= htmlspecialchars($sign_up['post_emailtrainer'])?></th>
 </tr>
-</div>
+<?php } ?>
 <?php
 } ?>
    </main>
+   <table>
+       <div class="sign_up">
+   <h2>3, 4 Klasse</h2>
+       </div>
+    <tr class="th">
+    <th>Klassenname</th>
+    <th>Teamname</th>
+    <th>Anzahl teilnehmender Spieler</th>
+    <th>Name der Lehrperson</th>
+    <th>Name des Trainers/ der Trainerin</th>
+    <th>Telefonnummer der Lehrperson</th>
+    <th>Telefonnummer des Trainers/ der Trainerin</th>
+    <th>Email-Adresse der Lehrperson</th>
+    <th>Email-Adresse des Trainers/ der Trainerin</th>
+</tr>
+    <div>
+    <?php
+foreach($sign_ups as $sign_up)  { ?>
+<?php
+if ($sign_up['post_class'] == '3,4Klasse') {?>
+<tr>
+    <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
+    <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_students'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_teacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_trainer'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_numberteacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_numbertrainer'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_emailteacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_emailtrainer'])?></th>
+</tr>
+<?php } ?>
+<?php
+} ?>
+   </div>
+   <table>
+    <div class="sign_up">
+   <h2>5, 6 Klasse</h2>
+    </div>
+    <tr class="th">
+    <th>Klassenname</th>
+    <th>Teamname</th>
+    <th>Anzahl teilnehmender Spieler</th>
+    <th>Name der Lehrperson</th>
+    <th>Name des Trainers/ der Trainerin</th>
+    <th>Telefonnummer der Lehrperson</th>
+    <th>Telefonnummer des Trainers/ der Trainerin</th>
+    <th>Email-Adresse der Lehrperson</th>
+    <th>Email-Adresse des Trainers/ der Trainerin</th>
+</tr>
+    <div>
+    <?php
+foreach($sign_ups as $sign_up)  { ?>
+<?php
+if ($sign_up['post_class'] == '5,6Klasse') {?>
+<tr>
+    <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
+    <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_students'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_teacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_trainer'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_numberteacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_numbertrainer'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_emailteacher'])?></th>
+    <th><?= htmlspecialchars($sign_up['post_emailtrainer'])?></th>
+</tr>
+<?php } ?>
+<?php
+} ?>
+   </div>
 </body>
 </html>

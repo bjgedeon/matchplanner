@@ -58,7 +58,7 @@ if (!empty($_POST['post-username'])) {
 </head>
 <body>
 <header class="header">
-        <h1 class="title">Spielplan</h1>
+        <h1 class="title">Anmeldung</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>

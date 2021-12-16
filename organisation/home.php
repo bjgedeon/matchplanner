@@ -11,14 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
- <header class="header">
- <h1 class="title">Oranisation für das Schülerturnier Ebikon</h1>
+<header class="header">
+ <h1 class="title">Organisation für das Schülerturnier Ebikon
+ </h1>
  <div class="div">
         <a href="home.php">Home</a>
         <a href="information.php">Information</a>
         <a href="anmeldungen.php">Anmeldungen</a>
+        <a href="anmeldung.php">Anmeldung</a>
         <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
     </div>
-</header>   
+</header>     
 </body>
 </html>

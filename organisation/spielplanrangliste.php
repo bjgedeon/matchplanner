@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (!empty($_POST['post-time'])) {
         $postTime = $_POST['post-time'];
-        if (!preg_match('/^[:+ 0-9]/', $postTime)) {
+        if (!preg_match('/[0-9]+:+[0-9]/', $postTime)) {
             $errors[] = 'Die Zeit nach Vorschrift eingeben.';
         }
     } else {
@@ -49,13 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
- <header class="header">
- <h1 class="title">Spielplan/Ranglist</h1>
+<header class="header">
+ <h1 class="title">Spielplan/Rangliste</h1>
  <div class="div">
         <a href="home.php">Home</a>
         <a href="information.php">Information</a>
         <a href="anmeldungen.php">Anmeldungen</a>
-        <a href="spielplanrangliste.php">Spielplan/Rangliste</a>
+        <a href="anmeldung.php">Anmeldung</a>
+        <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
     </div>
 </header>   
 <main>
@@ -67,6 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </ul>  
             </div>
             <?php } ?>
+            <div>
+   <?php
+if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
+    <div class="bestaetigungsbox"> <ul>
+    <li>Spiel ist eingetragen.</li>
+    <div>
+    <?php } ?>
+</ul>
+   </div>
             <div class="main">
 <form method="post" action="spielplanrangliste.php">
 
@@ -76,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      <p>Team2:</p>
      <input class="textarea" type = "text" value="<?php if (isset ($postTeam2)) { echo $postTeam2;} ?>" name = "post-team2">
      <p>Spielzeit:</p>
-     <input class="textarea" type = "text" value="<?php if (isset ($postTime)) { echo $postTime;} ?>" name = "post-time">
-    <input class = "bottom" type = "submit">
+     <input class="textarea" type = "text" value="<?php if (isset ($postTime)) { echo $postTime;} ?>" name = "post-time" placeholder="XX:XX">
+    <input class = "bottom" type = "submit" name="bottom">
     </div>
 </form>
  </main>

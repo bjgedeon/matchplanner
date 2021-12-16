@@ -52,7 +52,20 @@
     color: white;
 }
 
+.bestaetigungsbox {
+    display: flex;
+    border: rgb(95, 189, 95) solid 2px;
+    font-family: 'Outfit', sans-serif;
+    background: rgb(95, 189, 95);
+    color: white;
+    padding: 20px;
+    justify-content: center;
+}
 
+.sign_up {
+    font-family: 'Outfit', sans-serif;
+    margin-top: 35px;
+}
 
  a:link {
     font-family: 'Outfit', sans-serif;
@@ -91,8 +104,8 @@ table {
 }
 
 tr:nth-child(even) {
-    background: black;
-    color: white;
+    background: darkgray;
+    color: black;
 }
 
 table, th, td {
@@ -102,4 +115,8 @@ table, th, td {
     text-align: left;
     height: 30px;
     padding-left: 20px;
+}
+
+ul {
+    list-style-type: none;
 }

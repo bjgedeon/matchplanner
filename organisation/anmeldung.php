@@ -11,76 +11,76 @@ $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
 
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+ 
     if (!empty($_POST['post-classname'])) {
         $postClassname = $_POST['post-classname'];
     } else {
-        $errors[] = 'Geben Sie bitte den Klassennamen ein.';
+        $errors[] = 'Klassenamen';
     }
     if (!empty($_POST['post-teamname'])) {
         $postTeamname = $_POST['post-teamname'];
     } else {
-        $errors[] = 'Geben Sie bitte einen Teamnamen ein.';
+        $errors[] = 'Teamnamen';
     }
     if (!empty($_POST['post-class'])) {
         $postClass = $_POST['post-class'];
     } else {
-        $errors[] = 'Wählen Sie bitte eine Kategorie aus';
+        $errors[] = 'Kategorie';
     }
     if (!empty($_POST['post-students'])) {
         $postStudents = $_POST['post-students'];
         if (!is_numeric($postStudents)) {
-            $errors[] = 'Geben Sie bitte die Anzahl teilnehmender Spieler in einer Zahl an.';
+            $errors[] = 'Anzahl teilnehmender Spieler in einer Zahl.';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte die Anzahl teilnehmender Spieler ein.';
+        $errors[] = 'Anzahl teilnehmender Spieler.';
     }
     if (!empty($_POST['post-teacher'])) {
         $postTeacher = $_POST['post-teacher'];
     } else {
-        $errors[] = 'Geben Sie bitte den Namen der Lehrperson ein.';
+        $errors[] = 'Namen der Lehrperson.';
     }
     if (!empty($_POST['post-trainer'])) {
         $postTrainer = $_POST['post-trainer'];
     } else {
-        $errors[] = 'Geben Sie bitte den Namen des Trainers/ der Trainerin ein.';
+        $errors[] = 'Namen des Trainers/ der Trainerin';
     }
     if (!empty($_POST['post-numberteacher'])) {
         $postNumberteacher = $_POST['post-numberteacher'];
         if (!preg_match('/^[\+ 0-9]+$/', $postNumberteacher)) {
-            $errors[] = 'Geben Sie bitte eine gültige Telefonnummer, bei der Lehrperson, ein.';
+            $errors[] = 'gültige Telefonnummer bei der Lehrperson';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine Telefonnummer, bei der Lehrperson, ein.';
+        $errors[] = 'Telefonnummer bei der Lehrperson.';
     }
     if (!empty($_POST['post-numbertrainer'])) {
         $postNumbertrainer = $_POST['post-numbertrainer'];
         if (!preg_match('/^[\+ 0-9]+$/', $postNumbertrainer)) {
-            $errors[] = 'Geben Sie bitte eine gültige Telefonnummer, bei dem Trainer/ der Trainerin, ein.';
+            $errors[] = 'gültige Telefonnummer bei dem Trainer/ der Trainerin';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine Telefonnummer, bei dem Trainer/ der Trainerin, ein.';
+        $errors[] = 'Telefonnummer, bei dem Trainer/ der Trainerin';
     }
     if (!empty($_POST['post-emailteacher'])) {
         $postEmailteacher = $_POST['post-emailteacher'];
         if (strpos($postEmailteacher, '@') === false) {
-            $errors[] = 'Geben Sie bitte eine gültige Email-Adresse, bei der Lehrperson, ein.';
+            $errors[] = 'gültige Email-Adresse bei der Lehrperson';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine Email-Adresse, bei der Lehrperson, ein.';
+        $errors[] = 'Email-Adresse bei der Lehrperson';
     }
     if (!empty($_POST['post-emailtrainer'])) {
         $postEmailtrainer = $_POST['post-emailtrainer'];
         if (strpos($postEmailtrainer, '@') === false) {
-            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse, bei dem Trainer/ der Trainerin, ein.';
+            $errors[] = 'gültige E-mail-Adresse, bei dem Trainer/ der Trainerin';
         }
     }
     else {
-        $errors[] = 'Geben Sie bitte eine E-mail-Adresse, bei dem Trainer/ der Trainerin, ein.';
+        $errors[] = 'E-mail-Adresse, bei dem Trainer/ der Trainerin';
     }
     if (empty($errors)) {
         $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_class, post_students, post_classname, post_teamname, post_numberteacher, post_numbertrainer, post_emailteacher,  post_emailtrainer, post_teacher, post_trainer) VALUES (:postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postNumbertrainer, :postEmailteacher, :postEmailtrainer, :postTeacher, :postTrainer)");
@@ -103,21 +103,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <header class="header">
-        <h1 class="title">Anmeldung</h1>
-        <div class="div">
-        <a class="link" href="home.php">Home</a>
-        <a class="link" href="register.php">Anmeldung</a>
-        <div class="dropdown">
-        <button class="dropbtn" href="spielplan.php">Spielplan</a>
-        <div class="dropdown-content">
-        <a href="12klasse.php">1, 2 Klasse</a>
-        <a href="34klasse.php">3, 4 Klasse</a>
-        <a href="56klasse.php">5, 6 Klasse</a>
-        </div>
-</div>
-        <a class="link" href="rangliste.php">Rangliste</a>
+ <h1 class="title">Anmeldung</h1>
+ <div class="div">
+        <a href="home.php">Home</a>
+        <a href="information.php">Information</a>
+        <a href="anmeldungen.php">Anmeldungen</a>
+        <a href="anmeldung.php">Anmeldung</a>
+        <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
     </div>
-    </header>
+</header>   
    <main>
    <?php 
    if (count($errors) > 0) { ?>
@@ -132,14 +126,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <?php
 if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
     <div class="bestaetigungsbox"> <ul>
-    <li>Vielen Dank für Ihre Anmeldung am Schülerturnier Ebikon. Wir werden uns bei Ihnen melden wenn alles organisiert ist.</li>
+    <li>Anmeldung war erfolgreich</li>
     <div>
     <?php } ?>
 </ul>
    </div>
        <div class="main">
        <form method="post" action="anmeldung.php">
-<h2>Melden Sie ihre Klasse für das Schülerturnier Ebikon an.</h2>
+<h2>anmelden</h2>
   <p>Klassenname:</p>
   <input class="textarea" type = "text" value="<?php if (isset ($postClassname)) { echo $postClassname;} ?>" name="post-classname">
   <p>Teamname:</p>
