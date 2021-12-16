@@ -108,3 +108,48 @@ a:active {
 ul {
     list-style-type: none;
 }
+
+.dropbtn {
+    font-family: 'Outfit', sans-serif;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    font-size: 16px;
+}
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+
+  }
+  
+  .dropdown-content a {
+    background: rgb(95, 189, 95);
+    padding: 20px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: black
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropbtn:hover {
+    background: rgb(95, 189, 95);
+  }
+ 

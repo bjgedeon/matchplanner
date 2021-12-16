@@ -1,3 +1,41 @@
+<?php
+$user = 'root';
+$password = '';
+$database = 'matchplanner';
+
+$pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
+
+$errors = array();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!empty($_POST['post-team1'])) {
+        $postTeam1 = $_POST['post-team1'];
+    } else {
+        $errors[] = 'Team1 eingeben';
+    }
+    if (!empty($_POST['post-team2'])) {
+        $postTeam2 = $_POST['post-team2'];
+    } else {
+        $errors[] = 'Team2 eingeben';
+    }
+    if (!empty($_POST['post-time'])) {
+        $postTime = $_POST['post-time'];
+        if (!preg_match('/^[:+ 0-9]/', $postTime)) {
+            $errors[] = 'Die Zeit nach Vorschrift eingeben.';
+        }
+    } else {
+        $errors[] = 'Zeit eingeben';
+    }
+ 
+    if (empty($errors)) {
+        $stmt = $pdo->prepare("INSERT INTO `matchplan` (post_team1, post_team2, post_time) VALUES (:postTeam1, :postTeam2, :postTime)");
+        $stmt -> execute([':postTeam1' => $postTeam1, ':postTeam2' => $postTeam2, ':postTime' => $postTime]);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,5 +58,28 @@
         <a href="spielplanrangliste.php">Spielplan/Rangliste</a>
     </div>
 </header>   
+<main>
+ <?php if (count($errors) > 0) { ?>
+            <div class="errorbox"> <ul>
+                    <?php foreach ($errors as $error) { ?>
+                    <li> <?= $error ?> </li> <br>
+                    <?php } ?>        
+                    </ul>  
+            </div>
+            <?php } ?>
+            <div class="main">
+<form method="post" action="spielplanrangliste.php">
+
+    <h2>Information eingeben</h2>
+     <p>Team1:</p> 
+     <input class="textarea" type = "text" value="<?php if (isset ($postTeam1)) { echo $postTeam1;} ?>" name = "post-team1"> 
+     <p>Team2:</p>
+     <input class="textarea" type = "text" value="<?php if (isset ($postTeam2)) { echo $postTeam2;} ?>" name = "post-team2">
+     <p>Spielzeit:</p>
+     <input class="textarea" type = "text" value="<?php if (isset ($postTime)) { echo $postTime;} ?>" name = "post-time">
+    <input class = "bottom" type = "submit">
+    </div>
+</form>
+ </main>
 </body>
 </html>

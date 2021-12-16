@@ -10,23 +10,39 @@ $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ]);
 $errors = array();
- 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if(isset($_GET['login'])) {
-    $postUsername = $_POST['post_username'];
-    $postPasswort = $_POST['post_passwort'];
+  
+    $postUsername = $_POST['post_email'];
+    $postPassword = $_POST['post_password'];
     
-    $stmt = $pdo->prepare("SELECT * FROM register WHERE post_username = :postUsername");
+    $stmt = $pdo->prepare("SELECT * FROM register WHERE post_username = :post_username");
     $result = $stmt->execute(array('post_username' => $postUsername));
     $user = $stmt->fetch();
         
+
     if ($user !== false && password_verify($postPassword, $user['post_password'])) {
-    $user['id'];
+        $_SESSION['userid'] = $user['id'];
     } else {
-        $erorrs[] = 'Sie sind nicht registriert';
+        $errors[] = "Geben Sie bitte eine gültige Email oder ein gültiges Passwort ein.";
     }
-    
+}
+if (!empty($_POST['post-password'])) {
+    $postEmail = $_POST['post-password'];
+}
+else {
+    $errors[] = 'Geben Sie bitte eine Email-Adresse, bei der Lehrperson, ein.';
+}
+if (!empty($_POST['post-username'])) {
+    $postUsername = $_POST['post-username'];
+} else {
+    $errors[] = 'Geben Sie bitte einen Benutzernamen ein.';
+}
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,14 +57,21 @@ if(isset($_GET['login'])) {
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <h1 class="title">Anmeldung</h1>
+<header class="header">
+        <h1 class="title">Spielplan</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
-        <a class="link" href="spielplan.php">Spielplan</a>
-        <a class="link" href="rangliste.php">Rangliste</a>
+        <div class="dropdown">
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <div class="dropdown-content">
+        <a href="12klasse.php">1, 2 Klasse</a>
+        <a href="34klasse.php">3, 4 Klasse</a>
+        <a href="56klasse.php">5, 6 Klasse</a>
         </div>
+</div>
+        <a class="link" href="rangliste.php">Rangliste</a>
+    </div>
     </header>
    <main>
    <?php 
@@ -57,9 +80,9 @@ if(isset($_GET['login'])) {
                     <?php foreach ($errors as $error) { ?>
                     <li> <?= $error ?> </li> <br>
                     <?php } ?>        
-                </ul>  
- </div>
- <?php } ?>
+                    </ul>  
+            </div>
+            <?php } ?>
  </main>
  <div class="main">
     <div>

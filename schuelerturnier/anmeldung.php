@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (empty($errors)) {
         $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_class, post_students, post_classname, post_teamname, post_numberteacher, post_numbertrainer, post_emailteacher,  post_emailtrainer, post_teacher, post_trainer) VALUES (:postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postNumbertrainer, :postEmailteacher, :postEmailtrainer, :postTeacher, :postTrainer)");
-        $stmt -> execute([':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, 'postTeamname' => $postTeamname, ':postNumberteacher' => $postNumberteacher, ':postNumbertrainer' => $postNumbertrainer, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer, ':postTeacher' => $postTeacher, ':postTrainer' => $postTrainer]);
+        $stmt -> execute([':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, ':postTeamname' => $postTeamname, ':postNumberteacher' => $postNumberteacher, ':postNumbertrainer' => $postNumbertrainer, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer, ':postTeacher' => $postTeacher, ':postTrainer' => $postTrainer]);
     }
 }
 ?>
@@ -101,13 +101,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <h1 class="title">Anmeldung</h1>
+<header class="header">
+        <h1 class="title">Spielplan</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
-        <a class="link" href="anmeldung.php">Anmeldung</a>
-        <a class="link" href="spielplan.php">Spielplan</a>
+        <a class="link" href="register.php">Anmeldung</a>
+        <div class="dropdown">
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <div class="dropdown-content">
+        <a href="12klasse.php">1, 2 Klasse</a>
+        <a href="34klasse.php">3, 4 Klasse</a>
+        <a href="56klasse.php">5, 6 Klasse</a>
+        </div>
+</div>
         <a class="link" href="rangliste.php">Rangliste</a>
+    </div>
     </header>
    <main>
    <?php 
@@ -136,11 +144,11 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
   <p>Teamname:</p>
   <input class="textarea" type = "text" value="<?php if (isset ($postTeamname)) { echo $postTeamname;} ?>" name="post-teamname">
   <p>Kategorie:</p>
-  <input type="radio" name="post-class" value="1,2Klasse">
+  <input type="radio" name="post-class" value= "12">
   <label for="1,2Klasse">1, 2 Klasse</label><br>
-  <input type="radio" name="post-class" value="3,4Klasse">
+  <input type="radio" name="post-class" value= "34">
   <label for="3,4Klasse">3, 4 Klasse</label><br>
-  <input type="radio" name="post-class" value="5,6Klasse">
+  <input type="radio" name="post-class" value= "56">
   <label for="5,6Klasse">5, 6 Klasse</label>
   <p>Anzahl teilnehmender Schüler:</p>
   <input class="textarea" type = "text" value="<?php if (isset ($postStudents)) { echo $postStudents;} ?>" name="post-students" placeholder="Wert in Zahl angeben">
