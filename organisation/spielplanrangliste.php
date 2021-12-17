@@ -11,28 +11,42 @@ $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
 
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['post-team1'])) {
-        $postTeam1 = $_POST['post-team1'];
-    } else {
-        $errors[] = 'Team1 eingeben';
-    }
-    if (!empty($_POST['post-team2'])) {
-        $postTeam2 = $_POST['post-team2'];
+    if (!empty($_POST['post-team'])) {
+        $postTeam = $_POST['post-team'];
     } else {
         $errors[] = 'Team2 eingeben';
     }
+    if (!empty($_POST['post-otherteam'])) {
+        $postOtherteam = $_POST['post-otherteam'];
+    } else {
+        $errors[] = 'Team1 eingeben';
+    }
+    if (!empty($_POST['post-class'])) {
+        $postClass = $_POST['post-class'];
+    } else {
+        $errors[] = 'Kategorie';
+    }
     if (!empty($_POST['post-time'])) {
         $postTime = $_POST['post-time'];
-        if (!preg_match('/[0-9]+:+[0-9]/', $postTime)) {
+        if (!preg_match('/[0-9]+:+[0-9]+-+[0-9]+:+[0-9]/', $postTime)) {
             $errors[] = 'Die Zeit nach Vorschrift eingeben.';
         }
     } else {
         $errors[] = 'Zeit eingeben';
     }
+    if (!empty($_POST['post-place'])) {
+        $postPlace = $_POST['post-place'];
+        if (!is_numeric($postPlace)) {
+            $errors[] = 'Nr. des Platzes in Zahl';
+        }
+    }
+    else {
+        $errors[] = 'Nr. des Platzes';
+    }
  
     if (empty($errors)) {
-        $stmt = $pdo->prepare("INSERT INTO `matchplan` (post_team1, post_team2, post_time) VALUES (:postTeam1, :postTeam2, :postTime)");
-        $stmt -> execute([':postTeam1' => $postTeam1, ':postTeam2' => $postTeam2, ':postTime' => $postTime]);
+        $stmt = $pdo->prepare("INSERT INTO `matchplan` (post_class, post_team, post_otherteam, post_time, post_place) VALUES (:postClass, :postTeam, :postOtherteam, :postTime, :postPlace)");
+        $stmt -> execute([':postClass' => $postClass, ':postTeam' => $postTeam, ':postOtherteam' => $postOtherteam, ':postTime' => $postTime, 'postPlace' => $postPlace]);
     }
 }
 ?>
@@ -79,14 +93,22 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
    </div>
             <div class="main">
 <form method="post" action="spielplanrangliste.php">
-
+<p>Kategorie:</p>
+  <input type="radio" name="post-class" value= "1,2Klasse">
+  <label for="1,2Klasse">1, 2 Klasse</label><br>
+  <input type="radio" name="post-class" value= "3,4Klasse">
+  <label for="3,4Klasse">3, 4 Klasse</label><br>
+  <input type="radio" name="post-class" value= "5,6Klasse">
+  <label for="5,6Klasse">5, 6 Klasse</label>
     <h2>Information eingeben</h2>
-     <p>Team1:</p> 
-     <input class="textarea" type = "text" value="<?php if (isset ($postTeam1)) { echo $postTeam1;} ?>" name = "post-team1"> 
-     <p>Team2:</p>
-     <input class="textarea" type = "text" value="<?php if (isset ($postTeam2)) { echo $postTeam2;} ?>" name = "post-team2">
+     <p>Heimteam:</p> 
+     <input class="textarea" type = "text" value="<?php if (isset ($postTeam1)) { echo $postTeam1;} ?>" name = "post-team"> 
+     <p>Gastteam:</p>
+     <input class="textarea" type = "text" value="<?php if (isset ($postOtherteam)) { echo $postOtherteam;} ?>" name = "post-otherteam">
      <p>Spielzeit:</p>
-     <input class="textarea" type = "text" value="<?php if (isset ($postTime)) { echo $postTime;} ?>" name = "post-time" placeholder="XX:XX">
+     <input class="textarea" type = "text" value="<?php if (isset ($postTime)) { echo $postTime;} ?>" name = "post-time" placeholder="XX:XX-XX:XX">
+     <p>Platz:</p>
+     <input class="textarea" type = "text" value="<?php if (isset ($postPlace)) { echo $postPlace;} ?>" name = "post-place" placeholder="in Zahl angeben">
     <input class = "bottom" type = "submit" name="bottom">
     </div>
 </form>

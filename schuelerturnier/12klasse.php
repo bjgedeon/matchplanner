@@ -26,12 +26,12 @@ $sign_ups = $stmt->fetchALL();
 </head>
 <body>
 <header class="header">
-        <h1 class="title">Spielplan</h1>
+        <h1 class="title">Spielplan 1, 2 Klasse</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
         <div class="dropdown">
-        <button class="dropbtn" href="spielplan.php">Spielplan 1, 2 Klasse</a>
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
         <a href="12klasse.php">1, 2 Klasse</a>
         <a href="34klasse.php">3, 4 Klasse</a>
@@ -58,5 +58,34 @@ if ($sign_up['post_class'] == '1,2Klasse') {?>
 <?php } ?>
 <?php
 } ?>
+</table>
+<?php
+$stmt = $pdo->query('SELECT * FROM `matchplan`');
+$matchplans = $stmt->fetchALL(); 
+?>
+    <table>
+    <tr class="th">
+        <th>Zeit</th>
+    <th>Heimteam</th>
+    <th> </th>
+    <th>Gastteam</th>
+    <th>Platz</th>
+</tr>
+    <main>
+    <?php
+foreach($matchplans as $matchplan)  { ?>
+<?php
+if ($matchplan['post_class'] == '1,2Klasse') {?>
+<tr>
+    <th><?= htmlspecialchars($matchplan['post_time'])?></th> 
+    <th><?= htmlspecialchars($matchplan['post_team'])?></th>  
+    <th>vs.</th>
+    <th><?= htmlspecialchars($matchplan['post_otherteam'])?></th>
+    <th><?= htmlspecialchars($matchplan['post_place'])?></th>
+</tr>
+<?php } ?>
+<?php
+} ?>
+</table>
 </body>
 </html>

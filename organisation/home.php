@@ -1,3 +1,18 @@
+<?php
+$user = 'root';
+$password = '';
+$database = 'matchplanner';
+
+$pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
+
+$stmt = $pdo->query('SELECT * FROM `info`');
+$infos = $stmt->fetchALL(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +27,7 @@
 </head>
 <body>
 <header class="header">
- <h1 class="title">Organisation für das Schülerturnier Ebikon
+ <h1 class="title">Organisation Schülerturnier Ebikon
  </h1>
  <div class="div">
         <a href="home.php">Home</a>
@@ -21,6 +36,20 @@
         <a href="anmeldung.php">Anmeldung</a>
         <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
     </div>
-</header>     
+</header> 
+<main>
+    <?php
+foreach($infos as $info)  { ?>
+<div class="main">
+    <h2 class="block"><?= htmlspecialchars($info['info_title'])?></h2> <br>
+    <p class="block"><?= htmlspecialchars($info['info_text'])?></p>
+</div>
+<?php
+}
+?>
+    
+   </main>
+</body>
+</html>    
 </body>
 </html>

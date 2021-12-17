@@ -11,7 +11,9 @@ $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
 
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- 
+    if (empty($_POST['post-group'])) {
+        $postGroup = rand(1,2);
+    }
     if (!empty($_POST['post-classname'])) {
         $postClassname = $_POST['post-classname'];
     } else {
@@ -83,8 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'E-mail-Adresse, bei dem Trainer/ der Trainerin';
     }
     if (empty($errors)) {
-        $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_class, post_students, post_classname, post_teamname, post_numberteacher, post_numbertrainer, post_emailteacher,  post_emailtrainer, post_teacher, post_trainer) VALUES (:postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postNumbertrainer, :postEmailteacher, :postEmailtrainer, :postTeacher, :postTrainer)");
-        $stmt -> execute([':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, ':postTeamname' => $postTeamname, ':postNumberteacher' => $postNumberteacher, ':postNumbertrainer' => $postNumbertrainer, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer, ':postTeacher' => $postTeacher, ':postTrainer' => $postTrainer]);
+        $stmt = $pdo->prepare("INSERT INTO `sign_up` (post_group, post_class, post_students, post_classname, post_teamname, post_numberteacher, post_numbertrainer, post_emailteacher,  post_emailtrainer, post_teacher, post_trainer) VALUES (:postGroup, :postClass, :postStudents, :postClassname, :postTeamname, :postNumberteacher, :postNumbertrainer, :postEmailteacher, :postEmailtrainer, :postTeacher, :postTrainer)");
+        $stmt -> execute([':postGroup' => $postGroup,':postClass' => $postClass, ':postStudents' => $postStudents, ':postClassname' => $postClassname, ':postTeamname' => $postTeamname, ':postNumberteacher' => $postNumberteacher, ':postNumbertrainer' => $postNumbertrainer, ':postEmailteacher' => $postEmailteacher, ':postEmailtrainer' => $postEmailtrainer, ':postTeacher' => $postTeacher, ':postTrainer' => $postTrainer]);
     }
 }
 ?>

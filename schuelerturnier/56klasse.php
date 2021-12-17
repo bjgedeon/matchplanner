@@ -1,4 +1,3 @@
-
 <?php
 $user = 'root';
 $password = '';
@@ -12,7 +11,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
 
 $stmt = $pdo->query('SELECT * FROM `sign_up`');
 $sign_ups = $stmt->fetchALL(); 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,15 +38,16 @@ $sign_ups = $stmt->fetchALL();
         <a href="56klasse.php">5, 6 Klasse</a>
         </div>
 </div>
-        <a class="link" href="56klasse.php">Rangliste</a>
+        <a class="link" href="rangliste.php">Rangliste</a>
     </div>
     </header>
+    <div>
     <table>
     <tr class="th">
     <th>Klassenname</th>
     <th>Teamname</th>
 </tr>
-    <div>
+    <main>
     <?php
 foreach($sign_ups as $sign_up)  { ?>
 <?php
@@ -58,5 +59,34 @@ if ($sign_up['post_class'] == '5,6Klasse') {?>
 <?php } ?>
 <?php
 } ?>
+</table>
+<?php
+$stmt = $pdo->query('SELECT * FROM `matchplan`');
+$matchplans = $stmt->fetchALL(); 
+?>
+    <table>
+    <tr class="th">
+        <th>Zeit</th>
+    <th>Heimteam</th>
+    <th> </th>
+    <th>Gastteam</th>
+    <th>Platz</th>
+</tr>
+    <main>
+    <?php
+foreach($matchplans as $matchplan)  { ?>
+<?php
+if ($matchplan['post_class'] == '5,6Klasse') {?>
+<tr>
+    <th><?= htmlspecialchars($matchplan['post_time'])?></th> 
+    <th><?= htmlspecialchars($matchplan['post_team'])?></th>  
+    <th>vs.</th>
+    <th><?= htmlspecialchars($matchplan['post_otherteam'])?></th>
+    <th><?= htmlspecialchars($matchplan['post_place'])?></th>
+</tr>
+<?php } ?>
+<?php
+} ?>
+</table>
 </body>
 </html>
