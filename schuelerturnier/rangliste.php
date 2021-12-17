@@ -19,9 +19,9 @@
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1, 2 Klasse</a>
-        <a href="34klasse.php">3, 4 Klasse</a>
-        <a href="56klasse.php">5, 6 Klasse</a>
+        <a href="12klasse.php">1 + 2 Klasse</a>
+        <a href="34klasse.php">3 + 4 Klasse</a>
+        <a href="56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
         <a class="link" href="rangliste.php">Rangliste</a>

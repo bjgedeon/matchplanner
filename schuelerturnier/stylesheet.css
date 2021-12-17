@@ -8,6 +8,11 @@
     padding-right: 50px;
 }
 
+.undertitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 50px;
+}
+
 .header {
     background: rgb(95, 189, 95);
 }

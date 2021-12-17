@@ -27,16 +27,17 @@ $infos = $stmt->fetchALL();
 </head>
 <body>
 <header class="header">
-        <h1 class="title">Schülerturnier Ebikon</h1>
+        <h1 class="title">Schülerturnier Ebikon 2022</h1>
+        
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1, 2 Klasse</a>
-        <a href="34klasse.php">3, 4 Klasse</a>
-        <a href="56klasse.php">5, 6 Klasse</a>
+        <a href="12klasse.php">1 + 2 Klasse</a>
+        <a href="34klasse.php">3 + 4 Klasse</a>
+        <a href="56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
         <a class="link" href="rangliste.php">Rangliste</a>

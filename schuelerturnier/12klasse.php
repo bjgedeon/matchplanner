@@ -26,16 +26,16 @@ $sign_ups = $stmt->fetchALL();
 </head>
 <body>
 <header class="header">
-        <h1 class="title">Spielplan 1, 2 Klasse</h1>
+        <h1 class="title">Spielplan 1 + 2 Klasse</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1, 2 Klasse</a>
-        <a href="34klasse.php">3, 4 Klasse</a>
-        <a href="56klasse.php">5, 6 Klasse</a>
+        <a href="12klasse.php">1 + 2 Klasse</a>
+        <a href="34klasse.php">3 + 4 Klasse</a>
+        <a href="56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
         <a class="link" href="rangliste.php">Rangliste</a>
@@ -43,6 +43,7 @@ $sign_ups = $stmt->fetchALL();
     </header>
     <table>
     <tr class="th">
+    <th>Gruppe 1</th>
     <th>Klassenname</th>
     <th>Teamname</th>
 </tr>
@@ -51,10 +52,38 @@ $sign_ups = $stmt->fetchALL();
 foreach($sign_ups as $sign_up)  { ?>
 <?php
 if ($sign_up['post_class'] == '1,2Klasse') {?>
+<?php
+if ($sign_up['post_group'] == 1) {?>
 <tr>
+    <th> </th>
     <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
     <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
 </tr>
+<?php } ?>
+<?php } ?>
+<?php
+} ?>
+</table>
+<table>
+    <tr class="th">
+
+<th>Gruppe 2</th>
+    <th>Klassenname</th>
+    <th>Teamname</th>
+</tr>
+    <main>
+    <?php
+foreach($sign_ups as $sign_up)  { ?>
+<?php
+if ($sign_up['post_class'] == '1,2Klasse') {?>
+<?php
+if ($sign_up['post_group'] == 2) {?>
+<tr>
+    <th> </th>
+    <th><?= htmlspecialchars($sign_up['post_classname'])?></th>  
+    <th><?= htmlspecialchars($sign_up['post_teamname'])?></th>
+</tr>
+<?php } ?>
 <?php } ?>
 <?php
 } ?>

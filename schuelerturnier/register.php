@@ -30,11 +30,19 @@ if(isset($_GET['register'])) {
     $postUsername = $_POST['post-username'];
     }
     else {
-        $errors[] = 'Geben Sie bitte ein Passwort ein.';
+        $errors[] = 'Geben Sie bitte ein Benutzernamen ein.';
+    }
+    if (!empty($_POST['post-password'])) {
+    $postPassword = $_POST['post-password'];
+    }
+    else {
+        $errors[] = 'Geben Sie bitte ein Benutzernamen ein.';
     }
 
+
+
     $stmt = $pdo->prepare("INSERT INTO register (post_username, post_password, post_email) VALUES (:postUsername, :postPassword, :postEmail)");
-    $stmt->execute(array(':postUsername' => $postUsername, 'postPassword' => $postPassword, 'postEmail'));
+    $stmt->execute([':postUsername' => $postUsername, 'postPassword' => $postPassword, 'postEmail']);
     }
  ?>
 
@@ -59,9 +67,9 @@ if(isset($_GET['register'])) {
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1, 2 Klasse</a>
-        <a href="34klasse.php">3, 4 Klasse</a>
-        <a href="56klasse.php">5, 6 Klasse</a>
+        <a href="12klasse.php">1 + 2 Klasse</a>
+        <a href="34klasse.php">3 + 4 Klasse</a>
+        <a href="56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
         <a class="link" href="rangliste.php">Rangliste</a>
@@ -75,7 +83,7 @@ if(isset($_GET['register'])) {
                     <li> <?= $error ?> </li> <br>
                     <?php } ?>        
                     </ul>  
-            </div>
+         
             <?php } ?>
             <?php
 if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
@@ -95,8 +103,6 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
        <input class="textarea" type = "text" value="<?php if (isset ($postUsername)) { echo $postUsername;} ?>" name="post-username">    
        <p>Passwort:</p>
        <input class="textarea" type = "password" value="<?php if (isset ($postPassword)) { echo $postPassword;} ?>" name="post-password">
-       <p>Passwort bestätigen:</p>
-       <input class="textarea" type = "password" value="<?php if (isset ($postPassword)) { echo $postPassword;} ?>" name="post-password2">
        <input class = "bottom" type = "submit" name="bottom"> 
       </div>
     </form>
