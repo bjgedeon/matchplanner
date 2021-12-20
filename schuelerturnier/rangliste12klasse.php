@@ -12,21 +12,27 @@
 </head>
 <body>
 <header class="header">
-        <h1 class="title">Rangliste</h1>
+        <h1 class="title">Rangliste 1 + 2 Klasse</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1 + 2 Klasse</a>
-        <a href="34klasse.php">3 + 4 Klasse</a>
-        <a href="56klasse.php">5 + 6 Klasse</a>
+        <a href="spielplan12klasse.php">1 + 2 Klasse</a>
+        <a href="spielplan34klasse.php">3 + 4 Klasse</a>
+        <a href="spielplan56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
-        <a class="link" href="rangliste.php">Rangliste</a>
+<div class="dropdown">
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <div class="dropdown-content">
+        <a href="rangliste12klasse.php">1 + 2 Klasse</a>
+        <a href="rangliste34klasse.php">3 + 4 Klasse</a>
+        <a href="rangliste56klasse.php">5 + 6 Klasse</a>
+        </div>
+</div>
     </div>
     </header>
-   
 </body>
 </html>

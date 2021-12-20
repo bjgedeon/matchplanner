@@ -25,23 +25,26 @@ $sign_ups = $stmt->fetchALL();
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-       <header class="header">
-        <h1 class="title">Spielplan 3 + 4 Klasse</h1>
-        <div class="div">
-        <a class="link" href="home.php">Home</a>
-        <a class="link" href="register.php">Anmeldung</a>
+<header class="header">
+ <h1 class="title">Spielplan 3 + 4 Klasse
+ </h1>
+ <div class="div">
+        <a href="home.php">Home</a>
+        <a href="information.php">Information</a>
+        <a href="anmeldungen.php">Anmeldungen</a>
+        <a href="anmeldung.php">Anmeldung</a>
+        <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a class="link" href="12klasse.php">1 + 2 Klasse</a>
-        <a class="link" href="34klasse.php">3 + 4 Klasse</a>
-        <a class="link" href="56klasse.php">5 + 6 Klasse</a>
+        <a href="spielplan12klasse.php">1 + 2 Klasse</a>
+        <a href="spielplan34klasse.php">3 + 4 Klasse</a>
+        <a href="spielplan56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
-        <a class="link" href="rangliste.php">Rangliste</a>
     </div>
-    </header>
-    <table>
+</header> 
+<table>
     <tr class="th">
     <th>Gruppe 1</th>
     <th>Klassenname</th>
@@ -115,6 +118,6 @@ if ($matchplan['post_class'] == '3,4Klasse') {?>
 <?php } ?>
 <?php
 } ?>
-</table>
+</table>   
 </body>
 </html>

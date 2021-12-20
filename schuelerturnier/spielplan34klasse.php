@@ -25,20 +25,27 @@ $sign_ups = $stmt->fetchALL();
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="header">
-        <h1 class="title">Spielplan 1 + 2 Klasse</h1>
+       <header class="header">
+        <h1 class="title">Spielplan 3 + 4 Klasse</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
         <a class="link" href="register.php">Anmeldung</a>
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1 + 2 Klasse</a>
-        <a href="34klasse.php">3 + 4 Klasse</a>
-        <a href="56klasse.php">5 + 6 Klasse</a>
+        <a href="spielplan12klasse.php">1 + 2 Klasse</a>
+        <a href="spielplan34klasse.php">3 + 4 Klasse</a>
+        <a href="spielplan56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
-        <a class="link" href="rangliste.php">Rangliste</a>
+<div class="dropdown">
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <div class="dropdown-content">
+        <a href="rangliste12klasse.php">1 + 2 Klasse</a>
+        <a href="rangliste34klasse.php">3 + 4 Klasse</a>
+        <a href="rangliste56klasse.php">5 + 6 Klasse</a>
+        </div>
+</div>
     </div>
     </header>
     <table>
@@ -51,7 +58,7 @@ $sign_ups = $stmt->fetchALL();
     <?php
 foreach($sign_ups as $sign_up)  { ?>
 <?php
-if ($sign_up['post_class'] == '1,2Klasse') {?>
+if ($sign_up['post_class'] == '3,4Klasse') {?>
 <?php
 if ($sign_up['post_group'] == 1) {?>
 <tr>
@@ -75,7 +82,7 @@ if ($sign_up['post_group'] == 1) {?>
     <?php
 foreach($sign_ups as $sign_up)  { ?>
 <?php
-if ($sign_up['post_class'] == '1,2Klasse') {?>
+if ($sign_up['post_class'] == '3,4Klasse') {?>
 <?php
 if ($sign_up['post_group'] == 2) {?>
 <tr>
@@ -104,7 +111,7 @@ $matchplans = $stmt->fetchALL();
     <?php
 foreach($matchplans as $matchplan)  { ?>
 <?php
-if ($matchplan['post_class'] == '1,2Klasse') {?>
+if ($matchplan['post_class'] == '3,4Klasse') {?>
 <tr>
     <th><?= htmlspecialchars($matchplan['post_time'])?></th> 
     <th><?= htmlspecialchars($matchplan['post_team'])?></th>  

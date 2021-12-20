@@ -1,31 +1,21 @@
 <?php
 session_start();
-$user = 'root';
-$password = '';
+$userDb = 'root';
+$passwordDb = '';
 $database = 'matchplanner';
 
-$pdo = new PDO('mysql:host=localhost;dbname=' . $database, $user, $password, [
+$pdo = new PDO('mysql:host=localhost;dbname=' . $database, $userDb, $passwordDb, [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ]);
-$errors[] = array();
+$errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if(isset($_GET['register'])) {
 
-    $postEmail = $_POST['post_email'];
-    $postPassword = $_POST['post_password'];
-    $postUsername = $_POST['post_username'];
+    /*$postPassword = $_POST['post_password'];
+    $postUsername = $_POST['post_username'];*/
   
-    if (!empty($_POST['post-email'])) {
-        $postEmail = $_POST['post-email'];
-        if (strpos($postEmail, '@') === false) {
-            $errors[] = 'Geben Sie bitte eine gültige E-mail-Adresse ein.';
-        }
-    }
-    else {
-        $errors[] = 'Geben Sie bitte eine E-mail-Adresse ein.';
-    }
     if (!empty($_POST['post-username']))
     $postUsername = $_POST['post-username'];
     }
@@ -36,15 +26,30 @@ if(isset($_GET['register'])) {
     $postPassword = $_POST['post-password'];
     }
     else {
-        $errors[] = 'Geben Sie bitte ein Benutzernamen ein.';
+        $errors[] = 'Geben Sie bitte ein Passwort ein.';
     }
 
+    if (empty($errors)) {
 
+    $stmt = $pdo->prepare("SELECT * FROM register WHERE post_username = :post_username");
+    $result = $stmt->execute(array('post_username' => $postUsername));
+    $user = $stmt->fetch();
 
-    $stmt = $pdo->prepare("INSERT INTO register (post_username, post_password, post_email) VALUES (:postUsername, :postPassword, :postEmail)");
-    $stmt->execute([':postUsername' => $postUsername, 'postPassword' => $postPassword, 'postEmail']);
+    if ($user === false) {
+        $stmt = $pdo->prepare("INSERT INTO register (post_username, post_password) VALUES (:postUsername, :postPassword)");
+        $stmt->execute([':postUsername' => $postUsername, 'postPassword' => $postPassword]);
+
+       /* if ($user["post_username"] == $postUsername &&  $user["post_password"] == $postPassword) {
+            echo 'login OK';
+            $_SESSION['userid'] = $user['id'];*/
+        
+    } else {
+
+            $errors[] = 'Benutzername schon vergeben.';
+        }   
     }
- ?>
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,23 +72,30 @@ if(isset($_GET['register'])) {
         <div class="dropdown">
         <button class="dropbtn" href="spielplan.php">Spielplan</a>
         <div class="dropdown-content">
-        <a href="12klasse.php">1 + 2 Klasse</a>
-        <a href="34klasse.php">3 + 4 Klasse</a>
-        <a href="56klasse.php">5 + 6 Klasse</a>
+        <a href="spielplan12klasse.php">1 + 2 Klasse</a>
+        <a href="spielplan34klasse.php">3 + 4 Klasse</a>
+        <a href="spielplan56klasse.php">5 + 6 Klasse</a>
         </div>
 </div>
-        <a class="link" href="rangliste.php">Rangliste</a>
+<div class="dropdown">
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <div class="dropdown-content">
+        <a href="rangliste12klasse.php">1 + 2 Klasse</a>
+        <a href="rangliste34klasse.php">3 + 4 Klasse</a>
+        <a href="rangliste56klasse.php">5 + 6 Klasse</a>
+        </div>
+</div>
     </div>
     </header>
    <main>
-    <?php 
-    if (count($errors) > 0) { ?>
+   <?php 
+   if (count($errors) > 0) { ?>
             <div class = "errorbox"> <ul>
                     <?php foreach ($errors as $error) { ?>
                     <li> <?= $error ?> </li> <br>
-                    <?php } ?>        
+                    <?php } ?> 
                     </ul>  
-         
+            </div>
             <?php } ?>
             <?php
 if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>

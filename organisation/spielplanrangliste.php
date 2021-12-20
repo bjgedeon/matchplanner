@@ -71,6 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="anmeldungen.php">Anmeldungen</a>
         <a href="anmeldung.php">Anmeldung</a>
         <a href="spielplanrangliste.php">Spielplan und Rangliste</a>
+        <div class="dropdown">
+        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <div class="dropdown-content">
+        <a href="spielplan12klasse.php">1 + 2 Klasse</a>
+        <a href="spielplan34klasse.php">3 + 4 Klasse</a>
+        <a href="spielplan56klasse.php">5 + 6 Klasse</a>
+        </div>
+</div>
     </div>
 </header>   
 <main>
@@ -93,6 +101,7 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
    </div>
             <div class="main">
 <form method="post" action="spielplanrangliste.php">
+<h2>Spiel eintragen</h2>
 <p>Kategorie:</p>
   <input type="radio" name="post-class" value= "1,2Klasse">
   <label for="1,2Klasse">1, 2 Klasse</label><br>
@@ -100,7 +109,6 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
   <label for="3,4Klasse">3, 4 Klasse</label><br>
   <input type="radio" name="post-class" value= "5,6Klasse">
   <label for="5,6Klasse">5, 6 Klasse</label>
-    <h2>Information eingeben</h2>
      <p>Heimteam:</p> 
      <input class="textarea" type = "text" value="<?php if (isset ($postTeam1)) { echo $postTeam1;} ?>" name = "post-team"> 
      <p>Gastteam:</p>
