@@ -29,16 +29,27 @@ $infos = $stmt->fetchALL();
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<header class="header">
 <?php 
-    if ($_SESSION["userid"] > 0) {
-        echo 'Eingeloggt, User ID: '  . $_SESSION["userid"];
+    if ($_SESSION["userid"] > 0) { ?>
+    <div class="dropdown">
+      <button class="loggedin"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
+      <div class="dropdown-content">
+      <input type = "submit" name="logout">
+      </div>
+    </div>
+      <?php
     }
     else {
         echo 'NICHT EINGELOGGT';
     }
 ?>
-<header class="header">
-        <h1 class="title">Schülerturnier Ebikon 2022</h1>
+<?php
+  if (isset($_POST['logout'])) {
+        $_SESSION['userid'] = -1;
+    }?>
+        <h1 class="titlehome">Schülerturnier Ebikon 2022</h1>
         
         <div class="div">
         <a class="link" href="home.php">Home</a>
@@ -52,7 +63,7 @@ $infos = $stmt->fetchALL();
         </div>
 </div>
 <div class="dropdown">
-        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <button class="dropbtn" href="spielplan.php">Rangliste</a>
         <div class="dropdown-content">
         <a href="rangliste12klasse.php">1 + 2 Klasse</a>
         <a href="rangliste34klasse.php">3 + 4 Klasse</a>

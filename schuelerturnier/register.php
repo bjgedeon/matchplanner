@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $userDb = 'root';
 $passwordDb = '';
 $database = 'matchplanner';
@@ -11,12 +12,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=' . $database, $userDb, $passwordDb,
 ]);
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-if(isset($_GET['register'])) {
-
-    /*$postPassword = $_POST['post_password'];
-    $postUsername = $_POST['post_username'];*/
   
-    if (!empty($_POST['post-username']))
+    if (!empty($_POST['post-username'])) {
     $postUsername = $_POST['post-username'];
     }
     else {
@@ -32,19 +29,14 @@ if(isset($_GET['register'])) {
     if (empty($errors)) {
 
     $stmt = $pdo->prepare("SELECT * FROM register WHERE post_username = :post_username");
-    $result = $stmt->execute(array('post_username' => $postUsername));
+    $stmt->execute(array('post_username' => $postUsername));
     $user = $stmt->fetch();
 
     if ($user === false) {
         $stmt = $pdo->prepare("INSERT INTO register (post_username, post_password) VALUES (:postUsername, :postPassword)");
-        $stmt->execute([':postUsername' => $postUsername, 'postPassword' => $postPassword]);
+        $stmt->execute(['postUsername' => $postUsername, 'postPassword' => $postPassword]);
 
-       /* if ($user["post_username"] == $postUsername &&  $user["post_password"] == $postPassword) {
-            echo 'login OK';
-            $_SESSION['userid'] = $user['id'];*/
-        
     } else {
-
             $errors[] = 'Benutzername schon vergeben.';
         }   
     }
@@ -65,6 +57,20 @@ if(isset($_GET['register'])) {
 </head>
 <body>
 <header class="header">
+<?php 
+    if ($_SESSION["userid"] > 0) { ?>
+    <div class="dropdown">
+      <button class="loggedin"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
+      <div class="dropdown-content">
+      <input type = "submit" name="logout">
+      </div>
+    </div>
+      <?php
+    }
+    else {
+        echo 'NICHT EINGELOGGT';
+    }
+?>
         <h1 class="title">Anmeldung</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
@@ -78,7 +84,7 @@ if(isset($_GET['register'])) {
         </div>
 </div>
 <div class="dropdown">
-        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <button class="dropbtn" href="spielplan.php">Rangliste</a>
         <div class="dropdown-content">
         <a href="rangliste12klasse.php">1 + 2 Klasse</a>
         <a href="rangliste34klasse.php">3 + 4 Klasse</a>
@@ -89,7 +95,7 @@ if(isset($_GET['register'])) {
     </header>
    <main>
    <?php 
-   if (count($errors) > 0) { ?>
+   if (isset($_POST['bottom']) && (count($errors) > 0)) { ?>
             <div class = "errorbox"> <ul>
                     <?php foreach ($errors as $error) { ?>
                     <li> <?= $error ?> </li> <br>

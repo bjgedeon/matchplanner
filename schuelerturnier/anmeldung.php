@@ -1,4 +1,7 @@
 <?php
+
+include '../includes/sessionhandler.php';
+
 $user = 'root';
 $password = '';
 $database = 'matchplanner';
@@ -107,6 +110,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <header class="header">
+<?php 
+    if ($_SESSION["userid"] > 0) { ?>
+    <div class="dropdown">
+      <button class="loggedin"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
+      <div class="dropdown-content">
+      <input type = "submit" name="logout">
+      </div>
+    </div>
+      <?php
+    }
+    else {
+        echo 'NICHT EINGELOGGT';
+    }
+?>
         <h1 class="title">Anmeldung</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>
@@ -120,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 </div>
 <div class="dropdown">
-        <button class="dropbtn" href="spielplan.php">Spielplan</a>
+        <button class="dropbtn" href="spielplan.php">Rangliste</a>
         <div class="dropdown-content">
         <a href="rangliste12klasse.php">1 + 2 Klasse</a>
         <a href="rangliste34klasse.php">3 + 4 Klasse</a>
@@ -129,6 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
     </div>
     </header>
+    <?php if ($_SESSION["userid"] > 0) {?>
    <main>
    <?php 
    if (count($errors) > 0) { ?>
@@ -180,5 +198,12 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
 </form> 
        </div>
    </main>
+ <?php } 
+
+ else { ?>
+ <p>Bitte registrieren Sie sich<a class="link" href="register.php">Anmeldung</a></p>
+ <?php } ?>
+ 
+
 </body>
 </html>

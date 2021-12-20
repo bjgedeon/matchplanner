@@ -8,6 +8,16 @@
     padding-right: 50px;
 }
 
+.titlehome {
+    background: none;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    font-size: 70px;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
 .undertitle {
     font-family: 'Outfit', sans-serif;
     font-size: 50px;
@@ -196,13 +206,62 @@ tr:nth-child(even) {
 
 .loggedin {
     display: flex;
-    border: white solid 5px;
+    border: white solid 3px;
     border-radius: 25px;
     background: rgb(95, 189, 95);
     font-family: 'Outfit', sans-serif;
     color: white;
     padding: 10px;
-    margin: 20px;
     text-align: center;
+ 
 }
+
+.loggedin:hover {
+    display: flex;
+    border: rgb(95, 189, 95) solid 3px;
+    border-radius: 25px;
+    background: white;
+    font-family: 'Outfit', sans-serif;
+    color: rgb(95, 189, 95);
+    padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.loggedinposition {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.loggedindropdown {
+    position: center;
+    display: inline-block;
+  }
+  
+  .loggedindropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+
+  }
+  
+ .loggedindropdown-content a {
+    background: rgb(95, 189, 95);
+    padding: 20px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .loggedindropdown-content a:hover {
+      background-color: black
+  }
+  
+  .loggedindropdown:hover .dropdown-content {
+    display: block;
+  }
+  .loggedindropdown-content a:active {
+    background: lightgray;
+  }
 
