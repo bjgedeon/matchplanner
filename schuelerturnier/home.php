@@ -30,21 +30,24 @@ $infos = $stmt->fetchALL();
 </head>
 <body>
 
-<header class="header">
-<?php 
+
+         <header class="header">
+         <?php 
     if ($_SESSION["userid"] > 0) { ?>
-    <div class="dropdown">
-      <button class="loggedin"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
-      <div class="dropdown-content">
-      <input type = "submit" name="logout">
-      </div>
-    </div>
-      <?php
-    }
-    else {
-        echo 'NICHT EINGELOGGT';
-    }
-?>
+  
+      <button class="loggedinbutton"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
+  
+    <?php }
+    else {?>
+       <div class="dropdown2">
+        <button class="loggedoutbutton"> <?php echo 'NICHT EINGELOGGT'; ?> </button>
+        <div class="dropdown-content2">
+        <a href="register.php">registrieren</a>
+        <a href="login.php">login</a>
+        </div>
+       </div>
+         <?php } ?>
+
 <?php
   if (isset($_POST['logout'])) {
         $_SESSION['userid'] = -1;

@@ -53,9 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,8 +65,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+
 <header class="header">
+<?php 
+    if ($_SESSION["userid"] > 0) { ?>
+  
+      <button class="loggedinbutton"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
+  
+    <?php }
+    else {?>
+       <div class="dropdown2">
+        <button class="loggedoutbutton"> <?php echo 'NICHT EINGELOGGT'; ?> </button>
+        <div class="dropdown-content2">
+        <a href="register.php">registrieren</a>
+        <a href="login.php">login</a>
+        </div>
+       </div>
+         <?php } ?>
+<?php
+  if (isset($_POST['logout'])) {
+        $_SESSION['userid'] = -1;
+    }?>
         <h1 class="title">Anmeldung</h1>
         <div class="div">
         <a class="link" href="home.php">Home</a>

@@ -113,6 +113,23 @@
     display: inline-block;
 }
 
+.link3 {
+    font-family: 'Outfit', sans-serif;
+    text-decoration: none;
+    background-color: black;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.link4 {
+  background: rgb(95, 189, 95);
+  padding: 30px;
+  margin-top: 200px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+}
 a:hover {
     background: rgb(95, 189, 95);
 }
@@ -204,64 +221,74 @@ tr:nth-child(even) {
     color: black;
 }
 
-.loggedin {
-    display: flex;
-    border: white solid 3px;
-    border-radius: 25px;
-    background: rgb(95, 189, 95);
+
+
+
+
+
+
+
+
+
+  .linkanmeldung {
+    font-family: 'Outfit', sans-serif;
+  }
+
+.loggedinbutton {
+    background: black;
+    padding: 10px;
     font-family: 'Outfit', sans-serif;
     color: white;
-    padding: 10px;
-    text-align: center;
- 
+    border: black solid 3px;
 }
 
-.loggedin:hover {
-    display: flex;
-    border: rgb(95, 189, 95) solid 3px;
-    border-radius: 25px;
-    background: white;
+.loggedoutbutton {
+    background: black;
+    padding: 10px;
     font-family: 'Outfit', sans-serif;
-    color: rgb(95, 189, 95);
-    padding: 10px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: 20px;
+    color: white;
+    border: black solid 3px;
 }
 
-.loggedinposition {
-    margin-left: auto;
-    margin-right: 20px;
-}
+.loggedoutbutton:hover {
+background: white;
+color: black;
+border: white solid 3px;
 
-.loggedindropdown {
-    position: center;
-    display: inline-block;
-  }
+}
   
-  .loggedindropdown-content {
+  .dropdown-content2 {
     display: none;
+    font-family: 'Outfit', sans-serif;
     position: absolute;
     background-color: black;
     min-width: 160px;
 
   }
   
- .loggedindropdown-content a {
-    background: rgb(95, 189, 95);
+  .dropdown-content2 a {
+    background: black;
+    font-family: 'Outfit', sans-serif;
     padding: 20px;
     text-decoration: none;
     display: block;
   }
   
-  .loggedindropdown-content a:hover {
-      background-color: black
+  .dropdown-content2 a:hover {
+      background-color: white;
+      font-family: 'Outfit', sans-serif;
+      color: black;
   }
   
-  .loggedindropdown:hover .dropdown-content {
+  .dropdown2:hover .dropdown-content2 {
     display: block;
   }
-  .loggedindropdown-content a:active {
+  .dropdown-content2 a:active {
     background: lightgray;
+    font-family: 'Outfit', sans-serif;
   }
 
+  .dropdown2 {
+    position: center;
+    display: inline-block;
+  }
