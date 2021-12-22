@@ -3,7 +3,6 @@
     font-family: 'Outfit', sans-serif;
     color: white;
     font-size: 70px;
-    padding-top: 50px;
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -124,9 +123,8 @@
 }
 
 .link4 {
-  background: rgb(95, 189, 95);
+  background: rgb(165, 24, 24);
   padding: 30px;
-  margin-top: 200px;
   color: white;
   font-family: 'Outfit', sans-serif;
 }

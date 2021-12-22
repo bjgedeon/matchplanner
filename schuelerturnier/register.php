@@ -19,15 +19,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     else {
         $errors[] = 'Geben Sie bitte ein Benutzernamen ein.';
     }
-    if (!empty($_POST['post-password'])) {
-    $postPassword = $_POST['post-password'];
+    if (!empty($_POST['post-password1'])) {
+    $postPassword1 = $_POST['post-password1'];
     }
     else {
         $errors[] = 'Geben Sie bitte ein Passwort ein.';
     }
+    if (!empty($_POST['post-password2'])) {
+        $postPassword2 = $_POST['post-password2'];
+    }
+    else {
+        $errors[] = 'Geben Sie bitte das Passwort erneut ein.';
+    }
 
+
+
+    
     if (empty($errors)) {
-
+        if ($postPassword1 != $postPassword2) {
+            $errors[] = 'Die beiden Passwörter stimmen nicht miteinander überein.';
+         }
+    else {     
+    $postPassword = $postPassword1;
     $stmt = $pdo->prepare("SELECT * FROM register WHERE post_username = :post_username");
     $stmt->execute(array('post_username' => $postUsername));
     $user = $stmt->fetch();
@@ -40,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'Benutzername schon vergeben.';
         }   
     }
+}
 }
 ?>
 
@@ -62,12 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          <?php 
     if ($_SESSION["userid"] > 0) { ?>
   
-      <button class="loggedinbutton"> <?php echo 'Eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
+      <button class="loggedinbutton"> <?php echo 'eingeloggt, User ID: '  . $_SESSION["userid"]; ?></button>
   
     <?php }
     else {?>
        <div class="dropdown2">
-        <button class="loggedoutbutton"> <?php echo 'NICHT EINGELOGGT'; ?> </button>
+        <button class="loggedoutbutton"> <?php echo 'nicht eingeloggt'; ?> </button>
         <div class="dropdown-content2">
         <a href="register.php">registrieren</a>
         <a href="login.php">login</a>
@@ -113,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
 if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
     <div class="bestaetigungsbox"> <ul>
-    <li>Ihre Registration war erfolgreich</li>
+    <li>Ihre Registration war erfolgreich. Sie können sich jetzt <a href='login.php'>hier</a> einloggen.</li>
     <div>
     <?php } ?>
 </ul>
@@ -127,7 +141,9 @@ if (isset($_POST['bottom']) && (count($errors) === 0)) { ?>
           <p>Benutzername:</p>
        <input class="textarea" type = "text" value="<?php if (isset ($postUsername)) { echo $postUsername;} ?>" name="post-username">    
        <p>Passwort:</p>
-       <input class="textarea" type = "password" value="<?php if (isset ($postPassword)) { echo $postPassword;} ?>" name="post-password">
+       <input class="textarea" type = "password" value="<?php if (isset ($postPassword1)) { echo $postPassword1;} ?>" name="post-password1">
+       <p>Passwort erneut eingeben:</p>
+       <input class="textarea" type = "password" value="<?php if (isset ($postPassword2)) { echo $postPassword2;} ?>" name="post-password2">
        <input class = "bottom" type = "submit" name="bottom"> 
       </div>
     </form>
