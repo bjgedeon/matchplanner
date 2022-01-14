@@ -2,7 +2,6 @@
 
 include '../includes/sessionhandler.php';
 
-
 $userDb = 'root';
 $passwordDb = '';
 $database = 'matchplanner';
@@ -36,16 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user === false) {
          $errors[] = 'Login fehlgeschlagen.';
         } else {
-            if ($user["post_username"] == $postUsername &&  $user["post_password"] == $postPassword) {
+            if ($user["post_username"] == $postUsername && $user["post_password"] == $postPassword) {
                 $_SESSION['userid'] = $user['id'];
             }   
             else {
                 $_SESSION['userid'] = -1; 
             } 
         } 
-
     }
-
 }
 ?>
 
